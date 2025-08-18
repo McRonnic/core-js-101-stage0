@@ -274,7 +274,15 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-
+  return arr
+    .map((item, index) => {
+      const newArray = Array(index + 1).fill(item);
+      return newArray;
+    })
+    .flat();
+  // newArray(10)
+  // fill
+  // flat
 }
 
 /**
@@ -290,8 +298,8 @@ function propagateItemsByPositionIndex(arr) {
  *   [ 1,2,3,4,5,6,7,8,9,10 ] => [ 10, 9, 8 ]
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
-function get3TopItems(/* arr */) {
-  throw new Error('Not implemented');
+function get3TopItems(arr) {
+  return arr.sort((a, b) => b - a).slice(0, 3);
 }
 
 /**
@@ -307,8 +315,10 @@ function get3TopItems(/* arr */) {
  *   [ null, 1, 'elephant' ] => 1
  *   [ 1, '2' ] => 1
  */
-function getPositivesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getPositivesCount(arr) {
+  let res = arr.filter((item) => typeof item === 'number' && item > 0);
+  res = res.length;
+  return res;
 }
 
 /**
@@ -324,10 +334,50 @@ function getPositivesCount(/* arr */) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const arrC = arr;
+  const sorted = [];
+  const res = arrC.map((index) => {
+    switch (index) {
+      case 'zero':
+        sorted.push('zero');
+        break;
+      case 'one':
+        sorted.push('one');
+        break;
+      case 'two':
+        sorted.push('two');
+        break;
+      case 'three':
+        sorted.push('three');
+        break;
+      case 'four':
+        sorted.push('four');
+        break;
+      case 'five':
+        sorted.push('five');
+        break;
+      case 'six':
+        sorted.push('six');
+        break;
+      case 'seven':
+        sorted.push('seven');
+        break;
+      case 'eight':
+        sorted.push('eight');
+        break;
+      case 'nine':
+        sorted.push('nine');
+        break;
+      default:
+        return [];
+    }
+    console.log(sorted);
+    return arrC;
+  });
+  res.sort();
+  console.log(arrC);
 }
-
 /**
  * Returns the sum of all items in the specified array of numbers
  *
