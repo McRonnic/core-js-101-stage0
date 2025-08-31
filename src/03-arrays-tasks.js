@@ -557,16 +557,8 @@ function distinct(arr) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(array, keySelector, valueSelector) {
-  return array.reduce((map, obj) => {
-    const key = keySelector(obj);
-    const value = valueSelector(obj);
-    if (!map.has(key)) {
-      map.set(key, []);
-    }
-    map.get(key).push(value);
-    return map;
-  }, new Map());
+function group(/* array, keySelector, valueSelector */) {
+  throw new Error('Not implemented');
 }
 
 /**
@@ -582,8 +574,8 @@ function group(array, keySelector, valueSelector) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  return arr.map(childrenSelector).flat();
 }
 
 /**
@@ -598,10 +590,9 @@ function selectMany(/* arr, childrenSelector */) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+  return indexes.reduce((a, b) => a[b], arr);
 }
-
 /**
  * Swaps the head and tail of the specified array:
  * the head (first half) of array move to the end, the tail (last half) move to the start.
@@ -620,8 +611,21 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  if (arr.length < 4) {
+    return arr.reverse();
+  }
+  if (arr.length % 2 === 0) {
+    const start = arr.slice(arr.length / 2);
+    const end = arr.slice(0, arr.length / 2);
+    const res = start.concat(end);
+    return res;
+  }
+  const len = Math.floor(arr.length / 2);
+  const start = arr.slice(len + 1, arr.length);
+  const end = arr.slice(0, len);
+  const res = start.concat(arr[len]).concat(end);
+  return res;
 }
 
 module.exports = {
