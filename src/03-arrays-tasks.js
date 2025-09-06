@@ -362,7 +362,7 @@ function sortDigitNamesByNumericOrder(arr) {
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
 function getItemsSum(arr) {
-  return arr.reduce(function (a, b) {
+  return arr.reduce((a, b) => {
     return a + b;
   }, 0);
 }
@@ -407,7 +407,7 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurrences(arr, item) {
-  const res = arr.filter(function (pos) {
+  const res = arr.filter((pos) => {
     return pos === item;
   });
   return res.length;
